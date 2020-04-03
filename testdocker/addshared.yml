@@ -1,0 +1,25 @@
+version: "3"
+services:
+  ciAdded:
+    image: cichain:v0.0.1
+    container_name: ciAdded
+    hostname: ciAdded
+    environment:
+      CI_CHAIN_ID: ciAdded
+      CI_STATEDB: couchdb://admin:password@couchdb_service:5984/ci1
+      CI_HOME: /root/cid
+      CI_CLIHOME: /root/cli
+      CI_VALIDATOR_KEY: oQLmM5pM5wL78a6LJntQY8tPGQPpp050udIA5YZMkCc=
+    ports:
+    - 29606:26656
+    - 1910:80
+    volumes:
+    - ./nodeAdded:/root/cid
+    #    depends_on:
+    #      - couchdb_service
+    networks:
+      testdocker_couchDB:
+
+networks: ##定义网络组
+  testdocker_couchDB: ## 网络组名称
+    external: true

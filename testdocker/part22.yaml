@@ -1,84 +1,84 @@
 version: "3"
 services:
   ci0:
-    image: cichain:v0.0.1
+    image: harbor.oneitfarm.com/itfarm-test/c8d6441e7e3045fcb4e7d36cf5da420c:v1.0.3
     container_name: ci0
     hostname: ci0
     environment:
       CI_CHAIN_ID: ci0
-      CI_STATEDB: couchdb://admin:password@couchdb_service:5984/ci1
+#      CI_STATEDB: couchdb://admin:password@couchdb_service:5984/ci1
+      CI_STATEDB: couchdb://admin:zhangchaotest@193.112.144.129:7984/ci123online333
       CI_HOME: /root/cid
       CI_CLIHOME: /root/cli
       CI_VALIDATOR_KEY: oQLmM5pM5wL78a6LJntQY8tPGQPpp050udIA5YZMkCc=
-      GENESIS_SHARED: ci0,ci1,ci2
+#      GENESIS_SHARED: ci0,ci1,ci2
     ports:
       - 26606:26656
       - 1310:80
     volumes:
       - ./node0:/root/cid
-    #    depends_on:
-    #      - couchdb_service
     networks:
       testdocker_couchDB:
+#
+#  ci1:
+#    image: cichain:v0.0.1
+#    container_name: ci1
+#    hostname: ci1
+#    environment:
+#      CI_CHAIN_ID: ci1
+#      CI_STATEDB: couchdb://admin:password@couchdb_service:5984/ci1
+#      CI_HOME: /root/cid
+#      CI_CLIHOME: /root/cli
+#      CI_VALIDATOR_KEY: oQLmM5pM5wL78a6LJntQY8tPGQPpp050udIA5YZMkCc=
+#      GENESIS_SHARED: ci0,ci1,ci2
+#    ports:
+#      - 26616:26656
+#      - 1311:80
+#    volumes:
+#      - ./node1:/root/cid
+#    # depends_on:
+#    #   - ci0
+#    #   - couchdb_service
+#    networks:
+#      testdocker_couchDB:
+#
+#  ci2:
+#    image: cichain:v0.0.1
+#    container_name: ci2
+#    hostname: ci2
+#    environment:
+#      CI_CHAIN_ID: ci2
+#      CI_STATEDB: couchdb://admin:password@couchdb_service:5984/ci1
+#      CI_HOME: /root/cid
+#      CI_CLIHOME: /root/cli
+#      CI_VALIDATOR_KEY: oQLmM5pM5wL78a6LJntQY8tPGQPpp050udIA5YZMkCc=
+#      GENESIS_SHARED: ci0,ci1,ci2
+#    ports:
+#      - 26626:26656
+#      - 1312:80
+#    volumes:
+#      - ./node2:/root/cid
+#    # depends_on:
+#    #   - ci0
+#    #   - couchdb_service
+#    networks:
+#      testdocker_couchDB:
 
-  ci1:
-    image: cichain:v0.0.1
-    container_name: ci1
-    hostname: ci1
-    environment:
-      CI_CHAIN_ID: ci1
-      CI_STATEDB: couchdb://admin:password@couchdb_service:5984/ci1
-      CI_HOME: /root/cid
-      CI_CLIHOME: /root/cli
-      CI_VALIDATOR_KEY: oQLmM5pM5wL78a6LJntQY8tPGQPpp050udIA5YZMkCc=
-      GENESIS_SHARED: ci0,ci1,ci2
-    ports:
-      - 26616:26656
-      - 1311:80
-    volumes:
-      - ./node1:/root/cid
-    # depends_on:
-    #   - ci0
-    #   - couchdb_service
-    networks:
-      testdocker_couchDB:
-
-  ci2:
-    image: cichain:v0.0.1
-    container_name: ci2
-    hostname: ci2
-    environment:
-      CI_CHAIN_ID: ci2
-      CI_STATEDB: couchdb://admin:password@couchdb_service:5984/ci1
-      CI_HOME: /root/cid
-      CI_CLIHOME: /root/cli
-      CI_VALIDATOR_KEY: oQLmM5pM5wL78a6LJntQY8tPGQPpp050udIA5YZMkCc=
-      GENESIS_SHARED: ci0,ci1,ci2
-    ports:
-      - 26626:26656
-      - 1312:80
-    volumes:
-      - ./node2:/root/cid
-    # depends_on:
-    #   - ci0
-    #   - couchdb_service
-    networks:
-      testdocker_couchDB:
-
-  gateway:
-    image: cichain:v0.0.1
-    container_name: cproxyservice
-    hostname: cproxyservice
-    volumes:
-      - ./gateway:/root/gateway
-    environment:
-      GATEWAY: "true"
-      CI_LOGDIR: /root/gateway
-      CI_STATEDB: couchdb://admin:password@couchdb_service:5984/ci1
-    ports:
-      - 3030:3030
-    networks:
-      testdocker_couchDB:
+#  gateway:
+#    image: harbor.oneitfarm.com/itfarm-test/c8d6441e7e3045fcb4e7d36cf5da420c:v1.0.3
+#    container_name: cproxyservice
+#    hostname: cproxyservice
+#    volumes:
+#      - ./gateway:/root/gateway
+#    environment:
+#      GATEWAY: "true"
+#      CI_LOGDIR: /root/gateway
+##      CI_STATEDB: couchdb://admin:password@couchdb_service:5984/ci1
+#      CI_STATEDB: couchdb://admin:zhangchaotest@193.112.144.129:7984/ci123online333
+#    ports:
+#      - 3030:3030
+#    networks:
+#      testdocker_couchDB:
 
 networks: ##定义网络组
   testdocker_couchDB: ## 网络组名称
